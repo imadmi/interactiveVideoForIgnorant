@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { GoArrowRight } from "react-icons/go";
-import logo from "../../../public/logo.svg";
+import logo from "../../../public/pictures/logo.svg";
 import { FiInstagram } from "react-icons/fi";
 import { AiOutlineYoutube } from "react-icons/ai";
 

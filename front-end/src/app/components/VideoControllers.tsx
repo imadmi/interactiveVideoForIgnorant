@@ -6,6 +6,8 @@ import { IoMdVolumeMute } from "react-icons/io";
 import { RiFullscreenFill } from "react-icons/ri";
 import { MdOutlineFullscreenExit } from "react-icons/md";
 import { useAppContext } from "../AppContext";
+import { MdOutlineVoiceOverOff } from "react-icons/md";
+import { MdRecordVoiceOver } from "react-icons/md";
 
 const VideoControls = ({
   videoRef,
@@ -15,6 +17,9 @@ const VideoControls = ({
   formatTime,
 }: any) => {
   const context = useAppContext();
+  const toggleAudioAssistance = () => {
+    context.setisVoiceAssistanceEnabled(!context.isVoiceAssistanceEnabled);
+  };
 
   return (
     <>
@@ -118,12 +123,51 @@ const VideoControls = ({
           </motion.div>
         )}
       </AnimatePresence>
+
+      <AnimatePresence>
+        {context.isVoiceAssistanceEnabled ? (
+          <motion.div
+            className="absolute top-7 right-[124px] sm:right-[172px] z-20 border-2 pl-1 border-white 
+            bg-white rounded-lg shadow-2xl flex items-center justify-center cursor-pointer"
+            onClick={(event) => {
+              event.stopPropagation();
+              toggleAudioAssistance();
+            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <MdRecordVoiceOver
+              className="text-black rounded-lg shadow-2xl mx-2 my-1"
+              size="20"
+            />
+          </motion.div>
+        ) : (
+          <motion.div
+            className="absolute top-7 right-[124px] sm:right-[172px] z-20 border-2 border-white rounded-lg 
+            shadow-2xl flex items-center justify-center cursor-pointer"
+            onClick={(event) => {
+              event.stopPropagation();
+              toggleAudioAssistance();
+            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <MdOutlineVoiceOverOff
+              className="text-white rounded-lg shadow-2xl mx-2 my-1"
+              size="20"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <AnimatePresence>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="absolute top-7 right-[128px] sm:right-[180px] z-20 rounded-lg shadow-2xl flex 
+          className="absolute top-7 right-[174px] sm:right-[220px] z-20 rounded-lg shadow-2xl flex 
           items-center justify-center cursor-pointer w-auto"
         >
           <div

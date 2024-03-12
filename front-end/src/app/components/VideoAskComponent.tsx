@@ -39,8 +39,14 @@ const VideoAskComponent: React.FC<VideoAskComponentProps> = ({
   const handleQuestionClick = async (nextVideoId: string | null) => {
     await new Promise((resolve) => setTimeout(resolve, 500));
 
-    if (nextVideoId && context.videoAsks !== undefined && context.videoAsks.length > 0) {
-      const nextVideo = context.videoAsks.find((video) => video.id === nextVideoId);
+    if (
+      nextVideoId &&
+      context.videoAsks !== undefined &&
+      context.videoAsks.length > 0
+    ) {
+      const nextVideo = context.videoAsks.find(
+        (video) => video.id === nextVideoId
+      );
       if (nextVideo !== undefined) {
         context.setvideoAsk(nextVideo);
       } else {
@@ -127,6 +133,20 @@ const VideoAskComponent: React.FC<VideoAskComponentProps> = ({
     }
   };
 
+  const PlayVideoAsk = () => {
+    if (videoRef.current) {
+      context.setIsPaused(false);
+      videoRef.current.play();
+    }
+  }
+
+  const PauseVideoAsk = () => {
+    if (videoRef.current) {
+      context.setIsPaused(true);
+      videoRef.current.pause();
+    }
+  }
+
   const togglePlaybackSpeed = () => {
     const newSpeed =
       context.playbackSpeed === 2 ? 1 : context.playbackSpeed + 0.5;
@@ -184,11 +204,23 @@ const VideoAskComponent: React.FC<VideoAskComponentProps> = ({
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const togglePlayback = () => {
+  const toggleAudioPlay = () => {
     if (audioRef.current) {
       audioRef.current.play();
     }
   };
+
+  const StartAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+  }
+
+  const StopAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+    }
+  }
 
   return (
     <div
@@ -240,6 +272,7 @@ const VideoAskComponent: React.FC<VideoAskComponentProps> = ({
                 loop
                 muted={context.isMuted}
                 autoPlay
+                onPlay={StopAudio}
                 className={`h-screen w-screen 
                 ${
                   context.isVideoPortrait
@@ -256,17 +289,24 @@ const VideoAskComponent: React.FC<VideoAskComponentProps> = ({
         </div>
 
         <QuestionList
+          togglePlayPause={togglePlayPause}
           handleQuestionClick={handleQuestionClick}
           toggleAnimation={toggleAimation}
           triggerBlink={triggerBlink}
-          togglePlayback={togglePlayback}
+          toggleAudioPlay={toggleAudioPlay}
         />
-        {/* {context.audioUrl !== "" && (
-        <audio ref={audioRef} src={context.audioUrl}>
-          <source src={context.audioUrl} type="audio/mpeg" />
-          Your browser does not support the element
-        </audio>
-      )} */}
+        {context.audioUrl !== "" && (
+          <audio
+            ref={audioRef}
+            src={context.audioUrl}
+            autoPlay
+            onPlay={PauseVideoAsk}
+            onEnded={PlayVideoAsk}
+          >
+            <source src={context.audioUrl} type="audio/mpeg" />
+            Your browser does not support the element
+          </audio>
+        )}
       </div>
       {buttonLink && (
         <Link

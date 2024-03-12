@@ -26,7 +26,7 @@ export default function HometherdCompo() {
         </div>
       </div>
       <div className="lg:w-[60%] bg-green-200 lg:my-8">
-        <img src="workFlow.png" alt="companies" className="w-full bg-cover" />
+        <img src="/pictures/workFlow.png" alt="companies" className="w-full bg-cover" />
       </div>
     </SlideUpComponent>
   );

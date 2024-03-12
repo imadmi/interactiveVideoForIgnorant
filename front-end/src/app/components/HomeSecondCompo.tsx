@@ -1,9 +1,9 @@
 import Image from "next/image";
-import companies from "../../../public/companies.png";
-import companies1 from "../../../public/companies1.png";
-import companies2 from "../../../public/companies2.png";
-import companies3 from "../../../public/companies3.png";
-import companies4 from "../../../public/companies4.png";
+import companies from "../../../public/pictures/companies.png";
+import companies1 from "../../../public/pictures/companies1.png";
+import companies2 from "../../../public/pictures/companies2.png";
+import companies3 from "../../../public/pictures/companies3.png";
+import companies4 from "../../../public/pictures/companies4.png";
 import SlideUpComponent from "./SlideUpComponent";
 import HomeCards from "./HomeCards";
 import VideoHomeCard from "./VideoHomeCard";
@@ -45,21 +45,21 @@ export default function HomeSecondCompo() {
   space-x-5 lg:justify-evenly mt-10 items-center"
       >
         <HomeCards
-          img="/Group_2.png"
+          img="/pictures/Group_2.png"
           title="Recruitment"
           details="Streamline the recruitment process with asynchronous 
       interviews, easy scheduling, and tagging."
           linkTo="Learn more"
         />
         <HomeCards
-          img="/Group_1.png"
+          img="/pictures/Group_1.png"
           title="Sales & Marketing"
           details="Establish a bond with your audience from the get-go. 
       VideoAsk lets you gather contact info and capture leads with ease."
           linkTo="Find out how"
         />
         <HomeCards
-          img="/Group_3.png"
+          img="/pictures/Group_3.png"
           title="More Solutions"
           details="One tool, endless possibilities—use VideoAsk for research 
       and feedback, training, and customer support."

@@ -5,9 +5,11 @@ const QuestionList = ({
   handleQuestionClick,
   toggleAnimation,
   triggerBlink,
-  togglePlayback,
+  toggleAudioPlay,
 }: any) => {
   const context = useAppContext();
+
+  const [ClickIndex, setClickIndex] = useState<number | null>(null);
 
   const handleClickingQST = (
     event: any,
@@ -15,15 +17,20 @@ const QuestionList = ({
     index: number
   ) => {
     event.stopPropagation();
-    handleQuestionClick(next_video_id);
-    context.setIsPaused(false);
-    toggleAnimation();
     triggerBlink();
     context.setClickedButtonIndex(index);
-    context.setUpdatedCurrentTime(0);
-    context.setPlaybackSpeed(1);
-    context.setaudioUrl("/audios/audioTest.mp3");
-    togglePlayback();
+
+    if (ClickIndex !== index && context.isVoiceAssistanceEnabled) {
+      setClickIndex(index);
+      context.setaudioUrl("/audios/audioTest2.mp3");
+      toggleAudioPlay();
+    } else {
+      handleQuestionClick(next_video_id);
+      context.setIsPaused(false);
+      toggleAnimation();
+      context.setUpdatedCurrentTime(0);
+      context.setPlaybackSpeed(1);
+    }
   };
 
   const [isTheqstInArabic, setisTheqstInArabic] = useState([false]);
@@ -37,8 +44,6 @@ const QuestionList = ({
         })
       );
     }
-
-    // context.setaudioUrl("");
   }, [context.videoAsk]);
 
   return (

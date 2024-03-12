@@ -53,7 +53,7 @@ const Navbar = () => {
         }
       } catch (error: any) {
         const msg = "Error during login" + error.message;
-        toast.error(msg);
+        toast.error(msg, {id : "errorUser"});
       }
     };
     checkJwtCookie();

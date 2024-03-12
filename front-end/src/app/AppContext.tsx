@@ -61,6 +61,8 @@ export type AppContextProps = {
   setaudioUrl: (audioUrl: string) => void;
   isAudioPlayed: boolean;
   setisAudioPlayed: (isAudioPlayed: boolean) => void;
+  isVoiceAssistanceEnabled: boolean;
+  setisVoiceAssistanceEnabled: (isVoiceAssistanceEnabled: boolean) => void;
 };
 
 const AppContext = createContext<AppContextProps | undefined>(undefined);
@@ -106,6 +108,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [isVideoPortrait, setisVideoPortrait] = useState(true);
   const [audioUrl, setaudioUrl] = useState("");
   const [isAudioPlayed, setisAudioPlayed] = useState(false);
+  const [isVoiceAssistanceEnabled, setisVoiceAssistanceEnabled] = useState(false);
 
   const contextValue: AppContextProps = {
     UpdatedCurrentTime,
@@ -154,6 +157,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     setaudioUrl,
     isAudioPlayed,
     setisAudioPlayed,
+    isVoiceAssistanceEnabled,
+    setisVoiceAssistanceEnabled,
   };
 
   return (
