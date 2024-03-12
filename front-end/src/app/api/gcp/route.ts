@@ -1,4 +1,3 @@
-import { NextApiRequest, NextApiResponse } from 'next';
 // import { Storage } from '@google-cloud/storage';
 
 // const serviceAccountKeyFile: string = "./gcpBucketVideos.json";
@@ -26,7 +25,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 // //   },
 // // };
 
-export async function POST (req: NextApiRequest, res: NextApiResponse) {
+export async function POST (req: any, res: any) {
 
   console.log(req.body)
   // const data = await req.formData();

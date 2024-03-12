@@ -2,7 +2,7 @@
 
 import { useAppContext } from "@/app/AppContext";
 import VideoAskComponent from "@/app/components/VideoAskComponent";
-import { VideoAsk } from "@/app/get-started/types";
+import { VideoAsk } from "@/app/types";
 import { use, useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { mockData } from "@/app/get-started/mockData";
@@ -29,9 +29,9 @@ const Page = (param: any) => {
         }
 
         const data: VideoAsk[] = await response.json();
-        
-        console.log('data', data);
-        
+
+        console.log("data", data);
+
         const nextVideo = data.find((video) => video.id === param.params.id);
 
         if (nextVideo !== undefined) {
@@ -63,9 +63,10 @@ const Page = (param: any) => {
 
   return (
     <>
-      <VideoAskComponent 
-      // mockData={context.videoAsks} 
-      routedTo="/dashboard" />
+      <VideoAskComponent
+        // mockData={context.videoAsks}
+        routedTo="/dashboard"
+      />
     </>
   );
 };

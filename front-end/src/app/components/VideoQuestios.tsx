@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useAppContext } from "../AppContext";
+import { Qsts } from "../types";
 
 const QuestionList = ({
   handleQuestionClick,
@@ -13,7 +14,7 @@ const QuestionList = ({
 
   const handleClickingQST = (
     event: any,
-    next_video_id: string | null,
+    qst: Qsts,
     index: number
   ) => {
     event.stopPropagation();
@@ -22,10 +23,11 @@ const QuestionList = ({
 
     if (ClickIndex !== index && context.isVoiceAssistanceEnabled) {
       setClickIndex(index);
-      context.setaudioUrl("/audios/audioTest2.mp3");
+      // context.setaudioUrl("/audios/audioTest2.mp3");
+      context.setaudioUrl(qst.url);
       toggleAudioPlay();
     } else {
-      handleQuestionClick(next_video_id);
+      handleQuestionClick(qst.next_video_id);
       context.setIsPaused(false);
       toggleAnimation();
       context.setUpdatedCurrentTime(0);
@@ -76,7 +78,7 @@ const QuestionList = ({
             `}
                 key={index}
                 onClick={(e) =>
-                  handleClickingQST(e, question.next_video_id, index)
+                  handleClickingQST(e, question, index)
                 }
                 style={{
                   animation:

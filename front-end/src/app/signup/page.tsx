@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaCheckCircle } from "react-icons/fa";
 import { IoCloseCircleSharp } from "react-icons/io5";
-import logo from "../../../public/logo.svg";
+import logo from "../../../public/pictures/logo.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
-import { VideoAsk } from "./get-started/types";
+import { VideoAsk } from "./types";
 
 export type User = {
   id: string;
@@ -83,7 +83,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
       id: "",
       title: "",
       url: "",
-      questions: [{ question: "", next_video_id: null }],
+      questions: [{ question: "", url: "", next_video_id: null }],
     },
   ]);
 
@@ -108,7 +108,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [isVideoPortrait, setisVideoPortrait] = useState(true);
   const [audioUrl, setaudioUrl] = useState("");
   const [isAudioPlayed, setisAudioPlayed] = useState(false);
-  const [isVoiceAssistanceEnabled, setisVoiceAssistanceEnabled] = useState(false);
+  const [isVoiceAssistanceEnabled, setisVoiceAssistanceEnabled] =
+    useState(false);
 
   const contextValue: AppContextProps = {
     UpdatedCurrentTime,

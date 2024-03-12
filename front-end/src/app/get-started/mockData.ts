@@ -1,4 +1,4 @@
-import { VideoAsk } from "./types";
+import { VideoAsk } from "../types";
 
 const mockData: VideoAsk[] = [
   {
@@ -8,22 +8,27 @@ const mockData: VideoAsk[] = [
     questions: [
       {
         question: "Creating a videoask الْعَرَبِيَّة",
+        url : "/audios/audioTest2.mp3",
         next_video_id: "video2",
       },
       {
         question: "Navigating your responses",
+        url : "/audios/audioTest.mp3",
         next_video_id: "video3",
       },
       {
         question: "Managing your contacts",
+        url : "/audios/audioTest2.mp3",
         next_video_id: "video4",
       },
       {
         question: "Account and org settings",
+        url : "/audios/audioTest.mp3",
         next_video_id: "video5",
       },
       {
         question: "I'm ready, go to my dashboard!",
+        url : "/audios/audioTest2.mp3",
         next_video_id: null,
       },
     ],
@@ -36,18 +41,22 @@ const mockData: VideoAsk[] = [
     questions: [
       {
         question: "Navigating your responses",
+        url : "",
         next_video_id: "video3",
       },
       {
         question: "Managing your contacts الْعَرَبِيَّة",
+        url : "",
         next_video_id: "video4",
       },
       {
         question: "Account and org settings",
+        url : "",
         next_video_id: "video5",
       },
       {
         question: "I'm ready, go to my dashboard!",
+        url : "",
         next_video_id: null,
       },
     ],
@@ -60,18 +69,22 @@ const mockData: VideoAsk[] = [
     questions: [
       {
         question: "Creating a videoask",
+        url : "",
         next_video_id: "video2",
       },
       {
         question: "Managing your contacts",
+        url : "",
         next_video_id: "video4",
       },
       {
         question: "Account and org settings  الْعَرَبِيَّة",
+        url : "",
         next_video_id: "video5",
       },
       {
         question: "I'm ready, go to my dashboard!",
+        url : "",
         next_video_id: null,
       },
     ],
@@ -84,18 +97,22 @@ const mockData: VideoAsk[] = [
     questions: [
       {
         question: "Creating a videoask",
+        url : "",
         next_video_id: "video2",
       },
       {
         question: "Navigating your responses",
+        url : "",
         next_video_id: "video3",
       },
       {
         question: "Account and org settings",
+        url : "",
         next_video_id: "video5",
       },
       {
         question: "I'm ready, go to my dashboard!  الْعَرَبِيَّة",
+        url : "",
         next_video_id: null,
       },
     ],
@@ -108,23 +125,26 @@ const mockData: VideoAsk[] = [
     questions: [
       {
         question: "Creating a videoask  الْعَرَبِيَّة",
+        url : "",
         next_video_id: "video2",
       },
       {
         question: "Navigating your responses",
+        url : "",
         next_video_id: "video3",
       },
       {
         question: "Managing your contacts",
+        url : "",
         next_video_id: "video4",
       },
       {
         question: "I'm ready, go to my dashboard!",
+        url : "",
         next_video_id: null,
       },
     ],
   },
-
 ];
 
 export { mockData };

@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { useAppContext } from "../AppContext";
 import UploadVideo from "../components/UploadVideo";
 import { FaAnglesDown } from "react-icons/fa6";
+import { HiUpload } from "react-icons/hi";
 
 const VideoUploadForm = () => {
   const context = useAppContext();
@@ -34,6 +35,7 @@ const VideoUploadForm = () => {
     const newVideoAsk = [...context.videoAsks];
     newVideoAsk[videoAskIndex].questions.push({
       question: "",
+      url : "",
       next_video_id: null,
     });
     context.setVideoAsks(newVideoAsk);
@@ -55,7 +57,7 @@ const VideoUploadForm = () => {
         id: "",
         title: "",
         url: "",
-        questions: [{ question: "", next_video_id: null }],
+        questions: [{ question: "", url : "" ,next_video_id: null }],
       },
     ]);
   };
@@ -239,6 +241,13 @@ const VideoUploadForm = () => {
                           py-2 px-3 text-black leading-tight focus:outline-none 
                           focus:border-2 focus:border-green-400 focus:-outline mb-2"
                         />
+                        <button>
+                        <HiUpload 
+                        size="25"
+                        className="ml-2 mb-2 hover:text-cyan-500"
+                        />
+
+                        </button>
                         <button
                           type="button"
                           onClick={() =>

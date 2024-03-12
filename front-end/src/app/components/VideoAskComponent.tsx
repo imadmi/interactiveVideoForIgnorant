@@ -9,7 +9,7 @@ import VideoPlayerProgress from "../components/VideoPlayerProgress";
 import PauseComponent from "../components/PauseComponent";
 import VideoControls from "../components/VideoControllers";
 import QuestionList from "../components/VideoQuestios";
-import { VideoAsk } from "../../app/get-started/types";
+import { VideoAsk } from "../types";
 import TitleComponent from "./TitleComponent";
 
 type VideoAskComponentProps = {
@@ -133,19 +133,19 @@ const VideoAskComponent: React.FC<VideoAskComponentProps> = ({
     }
   };
 
-  const PlayVideoAsk = () => {
+  const PlayVideoAsk = async () => {
     if (videoRef.current) {
       context.setIsPaused(false);
-      videoRef.current.play();
+      await videoRef.current.play();
     }
-  }
+  };
 
   const PauseVideoAsk = () => {
     if (videoRef.current) {
       context.setIsPaused(true);
       videoRef.current.pause();
     }
-  }
+  };
 
   const togglePlaybackSpeed = () => {
     const newSpeed =
@@ -214,13 +214,13 @@ const VideoAskComponent: React.FC<VideoAskComponentProps> = ({
     if (audioRef.current) {
       audioRef.current.play();
     }
-  }
+  };
 
   const StopAudio = () => {
     if (audioRef.current) {
       audioRef.current.pause();
     }
-  }
+  };
 
   return (
     <div
