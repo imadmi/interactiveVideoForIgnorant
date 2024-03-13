@@ -6,6 +6,8 @@ import { useAppContext } from "../AppContext";
 import UploadVideo from "../components/UploadVideo";
 import { FaAnglesDown } from "react-icons/fa6";
 import { HiUpload } from "react-icons/hi";
+import UploadAudioo from "../components/UploadAudio";
+import UploadAudio from "../components/UploadAudio";
 
 const VideoUploadForm = () => {
   const context = useAppContext();
@@ -35,7 +37,7 @@ const VideoUploadForm = () => {
     const newVideoAsk = [...context.videoAsks];
     newVideoAsk[videoAskIndex].questions.push({
       question: "",
-      url : "",
+      url: "",
       next_video_id: null,
     });
     context.setVideoAsks(newVideoAsk);
@@ -57,7 +59,7 @@ const VideoUploadForm = () => {
         id: "",
         title: "",
         url: "",
-        questions: [{ question: "", url : "" ,next_video_id: null }],
+        questions: [{ question: "", url: "", next_video_id: null }],
       },
     ]);
   };
@@ -94,7 +96,6 @@ const VideoUploadForm = () => {
     console.log(context.videoAsks);
     const data = await res.json();
 
-    
     if (data.success) {
       toast.success("VideoAsk created successfully");
     } else if (data.error) {
@@ -123,7 +124,7 @@ const VideoUploadForm = () => {
               key={videoAskIndex}
               className="border border-gray-300 p-4 rounded-md mb-5"
             >
-              {!videoAsk.url && context.isModalOpen && <UploadVideo />}
+              {!videoAsk.url && context.isVideoModalOpen && <UploadVideo />}
               <div className="">
                 <div className="flex w-full flex-row justify-between">
                   <div className="flex flex-row items-center">
@@ -241,13 +242,24 @@ const VideoUploadForm = () => {
                           py-2 px-3 text-black leading-tight focus:outline-none 
                           focus:border-2 focus:border-green-400 focus:-outline mb-2"
                         />
-                        <button>
-                        <HiUpload 
-                        size="25"
-                        className="ml-2 mb-2 hover:text-cyan-500"
-                        />
+                        {!qst.url && context.isAudioModalOpen && (
+                          <UploadAudio qstnIndex={context.qstIndex} />
+                        )}
+                        {!qst.url && (
+                          <button
+                            onClick={() => {
+                              context.setVideoaskIndex(videoAskIndex);
+                              context.setqstIndex(questionIndex);
+                              context.setisAudioModalOpen(true);
+                            }}
+                          >
+                            <HiUpload
+                              size="25"
+                              className="ml-2 mb-2 hover:text-cyan-500"
+                            />
+                          </button>
+                        )}
 
-                        </button>
                         <button
                           type="button"
                           onClick={() =>
@@ -293,7 +305,7 @@ const VideoUploadForm = () => {
                         type="button"
                         onClick={() => {
                           context.setVideoaskIndex(videoAskIndex);
-                          context.setisModalOpen(true);
+                          context.setisVideoModalOpen(true);
                         }}
                         className="hover:bg-green-100 hover:border-green-400 inline-flex 
                         items-center px-2 sm:px-4 py-2 border rounded-md text-sm font-sans 
@@ -312,7 +324,7 @@ const VideoUploadForm = () => {
               type="button"
               onClick={() => {
                 addVideoAsk();
-                context.setisModalOpen(true);
+                context.setisVideoModalOpen(true);
                 context.setVideoaskIndex(context.videoAsks.length);
               }}
               className="w-40 text-center hover:bg-green-100 hover:border-green-400 

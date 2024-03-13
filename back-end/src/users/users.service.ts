@@ -3,20 +3,9 @@ import { JwtService } from '@nestjs/jwt';
 import { Prisma, PrismaClient, User } from '@prisma/client';
 import { create } from 'domain';
 import { JWT_SECRET } from 'src/constants';
+import { VideoAsk } from './types';
 
 const prisma = new PrismaClient();
-
-export type VideoAsk = {
-  id: string;
-  title: string;
-  url: string;
-  questions: Qsts[];
-};
-
-export type Qsts = {
-  question: string;
-  next_video_id: string | null;
-};
 
 @Injectable()
 export class UsersService {
@@ -53,6 +42,7 @@ export class UsersService {
         const questions = videoAsk.questions.map((q) => ({
           question: q.question,
           next_video_id: q.next_video_id,
+          url : q.url
         }));
         if (index === 0 && userId !== null) {
           await prisma.videoAsk.create({

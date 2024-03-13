@@ -41,10 +41,14 @@ export type AppContextProps = {
   setBlink: (blink: boolean) => void;
   clickedButtonIndex: number;
   setClickedButtonIndex: (clickedButtonIndex: number) => void;
-  isModalOpen: boolean;
-  setisModalOpen: (isModalOpen: boolean) => void;
+  isVideoModalOpen: boolean;
+  setisVideoModalOpen: (isVideoModalOpen: boolean) => void;
+  isAudioModalOpen: boolean;
+  setisAudioModalOpen: (isVideoModalOpen: boolean) => void;
   VideoaskIndex: number;
   setVideoaskIndex: (VideoaskIndex: number) => void;
+  qstIndex: number;
+  setqstIndex: (qstndex: number) => void;
   user: User | null;
   setUser: (user: User) => void;
   isDropsOpen: number;
@@ -98,8 +102,10 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [animate, setAnimate] = useState(false);
   const [blink, setBlink] = useState(false);
   const [clickedButtonIndex, setClickedButtonIndex] = useState(0);
-  const [isModalOpen, setisModalOpen] = useState(false);
+  const [isVideoModalOpen, setisVideoModalOpen] = useState(false);
+  const [isAudioModalOpen, setisAudioModalOpen] = useState(false);
   const [VideoaskIndex, setVideoaskIndex] = useState(0);
+  const [qstIndex, setqstIndex] = useState(0);
   const [user, setUser] = useState<User | null>(null);
   const [isDropsOpen, setDropOpen] = useState(0);
   const [isDropsOpenModal, setDropOpenModal] = useState(0);
@@ -136,8 +142,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     setBlink,
     clickedButtonIndex,
     setClickedButtonIndex,
-    isModalOpen,
-    setisModalOpen,
+    isVideoModalOpen,
+    setisVideoModalOpen,
     VideoaskIndex,
     setVideoaskIndex,
     videoAsks,
@@ -160,6 +166,10 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     setisAudioPlayed,
     isVoiceAssistanceEnabled,
     setisVoiceAssistanceEnabled,
+    isAudioModalOpen,
+    setisAudioModalOpen,
+    qstIndex,
+    setqstIndex,
   };
 
   return (

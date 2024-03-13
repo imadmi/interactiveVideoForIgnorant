@@ -53,7 +53,7 @@ const Navbar = () => {
         }
       } catch (error: any) {
         const msg = "Error during login" + error.message;
-        toast.error(msg, {id : "errorUser"});
+        toast.error(msg, { id: "errorUser" });
       }
     };
     checkJwtCookie();
@@ -61,7 +61,7 @@ const Navbar = () => {
 
   return (
     <>
-      {!context.isModalOpen && context.isFullscrean === false && (
+      {!context.isVideoModalOpen && context.isFullscrean === false && (
         <nav
           className=" text-black  sticky z-50 top-0 inset-x-0 
         flex justify-between items-center lg:px-8 bg-white h-14"

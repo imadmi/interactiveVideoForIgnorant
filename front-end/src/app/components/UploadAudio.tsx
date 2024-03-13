@@ -4,21 +4,16 @@ import { IoClose } from "react-icons/io5";
 import toast from "react-hot-toast";
 import { useAppContext } from "../AppContext";
 
-export default function UploadVideo() {
+export default function UploadAudio({qstnIndex}: {qstnIndex: number}) {
   const context = useAppContext();
-  const handelUpload = async (e: any, Videofile: File) => {
+  const handelUpload = async (e: any, Audiofile: File) => {
     e.preventDefault();
 
-    if (!Videofile) return;
+    if (!Audiofile) return;
 
     try {
       const data = new FormData();
-      data.set("file", Videofile);
-
-      // const res = await fetch("/api/upload", {
-      //   method: "POST",
-      //   body: data,
-      // });
+      data.set("file", Audiofile);
 
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}:3001/uploadVideo`,
@@ -32,24 +27,25 @@ export default function UploadVideo() {
       const resData = await res.json();
 
       if (!res.ok) {
-        toast.error("Failed to upload the video");
+        toast.error("Failed to upload the audio");
         return "";
       }
 
       if (resData && resData.success) {
-        context.setisVideoModalOpen(false);
+        context.setisAudioModalOpen(false);
         const newVideoAsk = [...context.videoAsks];
         if ("url" in newVideoAsk[context.VideoaskIndex]) {
-          newVideoAsk[context.VideoaskIndex].url = resData.path;
+          console.log("qstnIndex ", qstnIndex);
+          newVideoAsk[context.VideoaskIndex].questions[qstnIndex].url = resData.path;
           context.setVideoAsks(newVideoAsk);
         }
         return resData.path;
       } else {
-        toast.error("Failed to upload video");
+        toast.error("Failed to upload audio");
         return "";
       }
     } catch (e: any) {
-      toast.error("Failed to upload video" + e);
+      toast.error("Failed to upload audio" + e);
       return "";
     }
   };
@@ -74,12 +70,12 @@ export default function UploadVideo() {
       >
         <div className="relative w-[450px] h-96 bg-white rounded-[40px] p-4 z-10">
           <button
-            onClick={() => context.setisVideoModalOpen(false)}
+            onClick={() => context.setisAudioModalOpen(false)}
             className="absolute top-4 right-9"
           >
             <IoClose className="my-3 text-gray-600" size="23" />
           </button>
-          <div className="font-bold text-lg ml-7 my-3">Upload a video</div>
+          <div className="font-bold text-lg ml-7 my-3">Upload a audio</div>
           <div
             className="border-dashed border-4 m-4 h-[80%] border-gray-300 rounded-[40px]
                     flex flex-col items-center justify-center space-y-2"
@@ -87,13 +83,13 @@ export default function UploadVideo() {
             // onDrop={handleDrop}
           >
             <MdCloudUpload className="text-cyan-400" size="60" />
-            <div className=" text-xl font-sans">Drag a video to upload</div>
+            <div className=" text-xl font-sans">Drag a audio to upload</div>
             <div className="font-thin text-lg"> Or</div>
             <input
-              id="videoInput"
+              id="audioInput"
               type="file"
               name="file"
-              accept="video/*"
+              accept="audio/*"
               onChange={(e) => {
                 if (
                   e.target.files &&
@@ -107,7 +103,7 @@ export default function UploadVideo() {
             />
             <button
               onClick={(e) => {
-                document.getElementById("videoInput")?.click();
+                document.getElementById("audioInput")?.click();
               }}
               className="rounded-full border-[3px] border-cyan-400 text-cyan-400 py-1 px-4"
             >
