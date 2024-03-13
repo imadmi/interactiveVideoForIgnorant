@@ -173,6 +173,7 @@ export class UsersService {
         url: videoAsk.url,
         questions: videoAsk.questions.map((q) => ({
           question: q.question,
+          url : q.url,
           next_video_id: q.next_video_id,
         })),
       };

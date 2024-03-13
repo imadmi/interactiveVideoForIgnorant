@@ -26,6 +26,7 @@ CREATE TABLE "Question" (
     "id" SERIAL NOT NULL,
     "question" TEXT NOT NULL,
     "next_video_id" TEXT,
+    "url" TEXT NOT NULL,
     "videoAskId" TEXT NOT NULL,
 
     CONSTRAINT "Question_pkey" PRIMARY KEY ("id")
